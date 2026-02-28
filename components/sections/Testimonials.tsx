@@ -1,7 +1,12 @@
 "use client";
 
 import React from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { DoodleHeart, DoodleStar } from "../doodle/DoodleElements";
+import { useGSAP, headingReveal } from "@/lib/animations";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const testimonials = [
   {
@@ -55,15 +60,124 @@ const testimonials = [
 ];
 
 export default function Testimonials() {
+  const containerRef = useGSAP((container) => {
+    headingReveal(".section-header", container);
+
+    // Sticky notes — drop in from above with slight bounce + rotation
+    gsap.fromTo(
+      container.querySelectorAll(".testimonial-card"),
+      {
+        y: -80,
+        opacity: 0,
+        rotation: (i: number) => gsap.utils.random(-8, 8),
+        scale: 0.8,
+      },
+      {
+        y: 0,
+        opacity: 1,
+        rotation: (i: number) => parseFloat(testimonials[i % testimonials.length].rotation),
+        scale: 1,
+        duration: 0.7,
+        stagger: { each: 0.1, from: "random" },
+        ease: "bounce.out",
+        scrollTrigger: {
+          trigger: container.querySelector(".testimonials-grid"),
+          start: "top 85%",
+          toggleActions: "play none none none",
+        },
+      }
+    );
+
+    // Pins pop in after cards land
+    gsap.fromTo(
+      container.querySelectorAll(".pin-dot"),
+      { scale: 0 },
+      {
+        scale: 1,
+        duration: 0.3,
+        stagger: { each: 0.08, from: "random" },
+        delay: 0.6,
+        ease: "back.out(4)",
+        scrollTrigger: {
+          trigger: container.querySelector(".testimonials-grid"),
+          start: "top 85%",
+          toggleActions: "play none none none",
+        },
+      }
+    );
+
+    // Quote marks — fade in slowly
+    gsap.fromTo(
+      container.querySelectorAll(".quote-mark"),
+      { y: -15, opacity: 0 },
+      {
+        y: 0,
+        opacity: 0.25,
+        duration: 0.5,
+        stagger: 0.08,
+        delay: 0.4,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: container.querySelector(".testimonials-grid"),
+          start: "top 85%",
+          toggleActions: "play none none none",
+        },
+      }
+    );
+
+    // Bottom decorations
+    gsap.fromTo(
+      container.querySelectorAll(".bottom-deco"),
+      { y: 20, opacity: 0, scale: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        scale: 1,
+        duration: 0.5,
+        stagger: 0.15,
+        ease: "back.out(2)",
+        scrollTrigger: {
+          trigger: container.querySelector(".testimonials-grid"),
+          start: "bottom 90%",
+          toggleActions: "play none none none",
+        },
+      }
+    );
+
+    // Hover effect — slight wiggle
+    container.querySelectorAll<HTMLElement>(".testimonial-card").forEach((card) => {
+      card.addEventListener("mouseenter", () => {
+        gsap.to(card, {
+          rotation: 0,
+          scale: 1.04,
+          boxShadow: "5px 8px 25px rgba(42, 37, 32, 0.1)",
+          duration: 0.3,
+          ease: "power2.out",
+        });
+      });
+      card.addEventListener("mouseleave", () => {
+        const idx = Array.from(container.querySelectorAll(".testimonial-card")).indexOf(card);
+        gsap.to(card, {
+          rotation: parseFloat(testimonials[idx % testimonials.length].rotation),
+          scale: 1,
+          boxShadow: "2px 3px 8px rgba(42, 37, 32, 0.06)",
+          duration: 0.4,
+          ease: "elastic.out(1, 0.5)",
+        });
+      });
+    });
+  });
+
   return (
     <section
+      ref={containerRef}
       id="testimonials"
       className="relative py-24 md:py-32"
       style={{ background: "var(--paper-warm)" }}
     >
       <div className="max-w-7xl mx-auto px-6">
         {/* Section header */}
-        <div className="text-center mb-16">
+        <div className="section-header text-center mb-16" style={{ opacity: 0 }}>
           <p
             className="handwritten text-xl mb-2"
             style={{ color: "var(--accent-primary)" }}
@@ -78,37 +192,34 @@ export default function Testimonials() {
           </h2>
         </div>
 
-        {/* Testimonials — sticky note grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {testimonials.map((t, i) => (
+        {/* Testimonials grid */}
+        <div className="testimonials-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {testimonials.map((t) => (
             <div
               key={t.author}
               className="relative"
-              style={{
-                animation: `fadeInUp 0.5s ease-out ${0.08 * i}s both`,
-              }}
             >
               <div
-                className="note-style hover-lift p-7 relative"
+                className="testimonial-card note-style p-7 relative cursor-default"
                 style={{
                   background: t.color,
-                  transform: `rotate(${t.rotation})`,
-                  transition: "transform 0.3s ease",
+                  opacity: 0,
                 }}
               >
                 {/* Pin dot */}
                 <div
-                  className="absolute top-3 left-1/2 -translate-x-1/2 w-3 h-3 rounded-full z-10"
+                  className="pin-dot absolute top-3 left-1/2 -translate-x-1/2 w-3 h-3 rounded-full z-10"
                   style={{
                     background: "var(--accent-primary)",
                     boxShadow: "0 1px 3px rgba(0,0,0,0.2)",
+                    scale: 0,
                   }}
                 />
 
                 {/* Quote mark */}
                 <span
-                  className="handwritten text-5xl leading-none block mb-2"
-                  style={{ color: "var(--accent-primary)", opacity: 0.25 }}
+                  className="quote-mark handwritten text-5xl leading-none block mb-2"
+                  style={{ color: "var(--accent-primary)", opacity: 0 }}
                 >
                   &ldquo;
                 </span>
@@ -162,17 +273,17 @@ export default function Testimonials() {
         {/* Floating decoration */}
         <div className="flex justify-center mt-12 gap-4">
           <DoodleStar
-            className="animate-float"
+            className="bottom-deco animate-float"
             size={20}
             opacity={0.2}
           />
           <DoodleHeart
-            className="animate-float"
+            className="bottom-deco animate-float"
             size={18}
             opacity={0.2}
           />
           <DoodleStar
-            className="animate-float"
+            className="bottom-deco animate-float"
             size={16}
             opacity={0.15}
           />

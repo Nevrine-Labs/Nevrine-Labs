@@ -1,11 +1,55 @@
 "use client";
 
 import React from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { DoodleStar, DoodleHeart } from "../doodle/DoodleElements";
+import { useGSAP } from "@/lib/animations";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function Footer() {
+  const containerRef = useGSAP((container) => {
+    // Footer reveal
+    gsap.fromTo(
+      container.querySelectorAll(".footer-col"),
+      { y: 30, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 0.6,
+        stagger: 0.12,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: container,
+          start: "top 90%",
+          toggleActions: "play none none none",
+        },
+      }
+    );
+
+    // Bottom bar slides up
+    gsap.fromTo(
+      container.querySelector(".footer-bottom"),
+      { y: 20, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 0.5,
+        delay: 0.4,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: container,
+          start: "top 90%",
+          toggleActions: "play none none none",
+        },
+      }
+    );
+  });
+
   return (
     <footer
+      ref={containerRef}
       id="footer"
       className="relative"
       style={{ background: "var(--paper-warm)" }}
@@ -27,7 +71,7 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-6 py-16">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
           {/* Brand */}
-          <div className="md:col-span-2">
+          <div className="footer-col md:col-span-2" style={{ opacity: 0 }}>
             <div className="flex items-center gap-2 mb-4">
               <DoodleStar size={24} color="#e07a5f" opacity={0.6} />
               <span
@@ -46,21 +90,27 @@ export default function Footer() {
               touch.
             </p>
             <div className="flex gap-5">
-              {["Twitter", "GitHub", "Dribbble", "LinkedIn"].map((social) => (
+              {[
+                { label: "GitHub", href: "https://github.com/Nevrine-Labs" },
+                { label: "Twitter", href: "#" },
+                { label: "LinkedIn", href: "#" },
+              ].map((social) => (
                 <a
-                  key={social}
-                  href="#"
+                  key={social.label}
+                  href={social.href}
+                  target={social.href !== "#" ? "_blank" : undefined}
+                  rel={social.href !== "#" ? "noopener noreferrer" : undefined}
                   className="serif text-xs hover:text-[var(--accent-primary)] transition-colors duration-200"
                   style={{ color: "var(--ink-light)" }}
                 >
-                  {social}
+                  {social.label}
                 </a>
               ))}
             </div>
           </div>
 
           {/* Quick Links */}
-          <div>
+          <div className="footer-col" style={{ opacity: 0 }}>
             <h4
               className="handwritten text-lg font-bold mb-4"
               style={{ color: "var(--ink-dark)" }}
@@ -87,7 +137,7 @@ export default function Footer() {
           </div>
 
           {/* Services Links */}
-          <div>
+          <div className="footer-col" style={{ opacity: 0 }}>
             <h4
               className="handwritten text-lg font-bold mb-4"
               style={{ color: "var(--ink-dark)" }}
@@ -115,8 +165,9 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-14 pt-6 flex flex-col md:flex-row items-center justify-between gap-4"
-          style={{ borderTop: "1px dashed rgba(42, 37, 32, 0.1)" }}
+        <div
+          className="footer-bottom mt-14 pt-6 flex flex-col md:flex-row items-center justify-between gap-4"
+          style={{ borderTop: "1px dashed rgba(42, 37, 32, 0.1)", opacity: 0 }}
         >
           <p
             className="handwritten text-base text-center md:text-left"

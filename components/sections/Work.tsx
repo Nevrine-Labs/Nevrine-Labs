@@ -1,7 +1,12 @@
 "use client";
 
 import React from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { DoodleCircle, DoodleSquiggle } from "../doodle/DoodleElements";
+import { useGSAP, headingReveal } from "@/lib/animations";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const projects = [
   {
@@ -55,15 +60,104 @@ const projects = [
 ];
 
 export default function Work() {
+  const containerRef = useGSAP((container) => {
+    headingReveal(".section-header", container);
+
+    // Cards reveal with scrapboard-style — cascade from different angles
+    gsap.fromTo(
+      container.querySelectorAll(".work-card"),
+      {
+        y: 80,
+        opacity: 0,
+        rotateZ: (i: number) => (i % 2 === 0 ? -6 : 6),
+        scale: 0.85,
+      },
+      {
+        y: 0,
+        opacity: 1,
+        rotateZ: (i: number) => parseFloat(projects[i % projects.length].rotation),
+        scale: 1,
+        duration: 0.8,
+        stagger: 0.12,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: container.querySelector(".work-grid"),
+          start: "top 85%",
+          toggleActions: "play none none none",
+        },
+      }
+    );
+
+    // Tape strips — slide in from top
+    gsap.fromTo(
+      container.querySelectorAll(".tape-strip"),
+      { y: -20, opacity: 0, scaleX: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        scaleX: 1,
+        duration: 0.4,
+        stagger: 0.1,
+        delay: 0.5,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: container.querySelector(".work-grid"),
+          start: "top 85%",
+          toggleActions: "play none none none",
+        },
+      }
+    );
+
+    // Hover glow effect on project cards
+    container.querySelectorAll<HTMLElement>(".work-card").forEach((card) => {
+      card.addEventListener("mouseenter", () => {
+        gsap.to(card, {
+          scale: 1.03,
+          boxShadow: "6px 10px 30px rgba(42, 37, 32, 0.12)",
+          duration: 0.3,
+          ease: "power2.out",
+        });
+      });
+      card.addEventListener("mouseleave", () => {
+        gsap.to(card, {
+          scale: 1,
+          boxShadow: "2px 3px 8px rgba(42, 37, 32, 0.06)",
+          duration: 0.4,
+          ease: "elastic.out(1, 0.6)",
+        });
+      });
+    });
+
+    // Doodle decorations — scale in
+    gsap.fromTo(
+      container.querySelectorAll(".work-deco"),
+      { scale: 0, opacity: 0 },
+      {
+        scale: 1,
+        opacity: 1,
+        duration: 0.6,
+        stagger: 0.15,
+        delay: 0.8,
+        ease: "back.out(2)",
+        scrollTrigger: {
+          trigger: container.querySelector(".work-grid"),
+          start: "top 85%",
+          toggleActions: "play none none none",
+        },
+      }
+    );
+  });
+
   return (
     <section
+      ref={containerRef}
       id="work"
       className="relative py-24 md:py-32"
       style={{ background: "var(--paper-warm)" }}
     >
       <div className="max-w-7xl mx-auto px-6">
         {/* Section header */}
-        <div className="text-center mb-16">
+        <div className="section-header text-center mb-16" style={{ opacity: 0 }}>
           <p
             className="handwritten text-xl mb-2"
             style={{ color: "var(--accent-primary)" }}
@@ -85,29 +179,27 @@ export default function Work() {
         </div>
 
         {/* Scrapboard grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+        <div className="work-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
           {projects.map((project, index) => (
             <div
               key={project.title}
               className="relative group cursor-pointer"
-              style={{
-                animation: `fadeInUp 0.5s ease-out ${0.1 * index}s both`,
-              }}
             >
               <div
-                className="note-style hover-lift p-6 transition-all duration-300"
+                className="work-card note-style p-6 transition-colors duration-300"
                 style={{
                   background: project.color,
-                  transform: `rotate(${project.rotation})`,
+                  opacity: 0,
                   border: `1.5px dashed ${project.accent}33`,
                 }}
               >
                 {/* Tape effect */}
                 <div
-                  className="absolute -top-2.5 left-1/2 -translate-x-1/2 w-16 h-5 rounded-sm"
+                  className="tape-strip absolute -top-2.5 left-1/2 -translate-x-1/2 w-16 h-5 rounded-sm"
                   style={{
                     background: "rgba(212, 184, 150, 0.5)",
-                    transform: `rotate(${parseFloat(project.rotation) > 0 ? "-3" : "2"}deg)`,
+                    transform: `translateX(-50%) rotate(${parseFloat(project.rotation) > 0 ? "-3" : "2"}deg)`,
+                    opacity: 0,
                   }}
                 />
 
@@ -119,14 +211,12 @@ export default function Work() {
                     border: `1px solid ${project.accent}25`,
                   }}
                 >
-                  {/* Doodle sketch placeholder */}
                   <svg width="80" height="60" viewBox="0 0 80 60" fill="none" style={{ opacity: 0.2 }}>
                     <rect x="5" y="5" width="70" height="50" rx="4" stroke={project.accent} strokeWidth="1.5" strokeDasharray="4 3" />
                     <path d="M20 35L30 20L45 30L55 18L65 35" stroke={project.accent} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                     <circle cx="25" cy="18" r="5" stroke={project.accent} strokeWidth="1.5" />
                   </svg>
 
-                  {/* Overlay on hover */}
                   <div
                     className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                     style={{ background: `${project.accent}12` }}
@@ -143,7 +233,6 @@ export default function Work() {
                   </div>
                 </div>
 
-                {/* Text */}
                 <p
                   className="handwritten text-sm mb-1"
                   style={{ color: project.accent }}
@@ -164,17 +253,16 @@ export default function Work() {
                 </p>
               </div>
 
-              {/* Decorative doodle */}
               {index % 3 === 0 && (
                 <DoodleCircle
-                  className="absolute -bottom-4 -right-4"
+                  className="work-deco absolute -bottom-4 -right-4"
                   size={30}
                   opacity={0.15}
                 />
               )}
               {index % 3 === 1 && (
                 <DoodleSquiggle
-                  className="absolute -bottom-2 -left-3"
+                  className="work-deco absolute -bottom-2 -left-3"
                   size={50}
                   opacity={0.12}
                 />
