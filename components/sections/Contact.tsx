@@ -173,6 +173,7 @@ export default function Contact() {
               <input type="hidden" name="_subject" value="🎨 New Project Inquiry — Nevrine Labs" />
               <input type="hidden" name="_captcha" value="false" />
               <input type="hidden" name="_template" value="table" />
+              <input type="hidden" name="_next" value={typeof window !== "undefined" ? `${window.location.origin}/thanks` : "/thanks"} />
               {/* Honeypot anti-spam */}
               <input type="text" name="_honey" style={{ display: "none" }} />
 
