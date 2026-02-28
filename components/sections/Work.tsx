@@ -152,12 +152,12 @@ export default function Work() {
     <section
       ref={containerRef}
       id="work"
-      className="relative py-24 md:py-32"
+      className="relative py-16 sm:py-24 md:py-32"
       style={{ background: "var(--paper-warm)" }}
     >
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
         {/* Section header */}
-        <div className="section-header text-center mb-16" style={{ opacity: 0 }}>
+        <div className="section-header text-center mb-10 sm:mb-16" style={{ opacity: 0 }}>
           <p
             className="handwritten text-xl mb-2"
             style={{ color: "var(--accent-primary)" }}
@@ -165,7 +165,7 @@ export default function Work() {
             our portfolio 🎨
           </p>
           <h2
-            className="serif text-4xl md:text-5xl font-bold mb-4"
+            className="serif text-3xl sm:text-4xl md:text-5xl font-bold mb-4"
             style={{ color: "var(--ink-dark)" }}
           >
             Selected <span className="doodle-underline">Work</span>
@@ -179,14 +179,14 @@ export default function Work() {
         </div>
 
         {/* Scrapboard grid */}
-        <div className="work-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+        <div className="work-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-10">
           {projects.map((project, index) => (
             <div
               key={project.title}
               className="relative group cursor-pointer"
             >
               <div
-                className="work-card note-style p-6 transition-colors duration-300"
+                className="work-card note-style p-4 sm:p-6 transition-colors duration-300"
                 style={{
                   background: project.color,
                   opacity: 0,

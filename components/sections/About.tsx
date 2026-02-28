@@ -179,12 +179,12 @@ export default function About() {
     <section
       ref={containerRef}
       id="about"
-      className="relative py-24 md:py-32"
+      className="relative py-16 sm:py-24 md:py-32"
       style={{ background: "var(--paper-light)" }}
     >
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
         {/* Section header */}
-        <div className="section-header text-center mb-16" style={{ opacity: 0 }}>
+        <div className="section-header text-center mb-10 sm:mb-16" style={{ opacity: 0 }}>
           <p
             className="handwritten text-xl mb-2"
             style={{ color: "var(--accent-primary)" }}
@@ -192,7 +192,7 @@ export default function About() {
             who we are 💡
           </p>
           <h2
-            className="serif text-4xl md:text-5xl font-bold mb-4"
+            className="serif text-3xl sm:text-4xl md:text-5xl font-bold mb-4"
             style={{ color: "var(--ink-dark)" }}
           >
             About <span className="doodle-underline">Nevrine Labs</span>
@@ -200,10 +200,10 @@ export default function About() {
         </div>
 
         {/* About content */}
-        <div className="about-content grid grid-cols-1 lg:grid-cols-2 gap-12 mb-20">
+        <div className="about-content grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 mb-12 sm:mb-20">
           {/* Left: Story */}
           <div
-            className="story-panel ruled-lines p-8 rounded-lg relative"
+            className="story-panel ruled-lines p-5 sm:p-8 rounded-lg relative"
             style={{
               background: "var(--paper-white)",
               border: "1px solid rgba(42, 37, 32, 0.06)",
@@ -289,7 +289,7 @@ export default function About() {
         {/* Creative Process Timeline */}
         <div className="mt-8">
           <h3
-            className="process-heading handwritten text-3xl font-bold text-center mb-12"
+            className="process-heading handwritten text-2xl sm:text-3xl font-bold text-center mb-8 sm:mb-12"
             style={{ color: "var(--ink-dark)", opacity: 0 }}
           >
             Our Creative Process 🔄
@@ -314,16 +314,16 @@ export default function About() {
               />
             </svg>
 
-            <div className="flex flex-col gap-8">
+            <div className="flex flex-col gap-5 sm:gap-8">
               {processSteps.map((step, i) => (
                 <div
                   key={step.step}
-                  className={`timeline-step flex items-center gap-6 ${i % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
+                  className={`timeline-step flex items-center gap-4 sm:gap-6 ${i % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
                     }`}
                   style={{ opacity: 0 }}
                 >
                   <div
-                    className={`flex-1 note-style p-6 hover-tilt ${i % 2 === 0 ? "md:text-right" : "md:text-left"
+                    className={`flex-1 note-style p-4 sm:p-6 hover-tilt ${i % 2 === 0 ? "md:text-right" : "md:text-left"
                       }`}
                     style={{
                       background:

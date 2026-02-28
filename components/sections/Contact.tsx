@@ -120,12 +120,12 @@ export default function Contact() {
     <section
       ref={containerRef}
       id="contact"
-      className="relative py-24 md:py-32"
+      className="relative py-16 sm:py-24 md:py-32"
       style={{ background: "var(--paper-light)" }}
     >
-      <div className="max-w-5xl mx-auto px-6">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6">
         {/* Section header */}
-        <div className="section-header text-center mb-16" style={{ opacity: 0 }}>
+        <div className="section-header text-center mb-10 sm:mb-16" style={{ opacity: 0 }}>
           <p
             className="handwritten text-xl mb-2"
             style={{ color: "var(--accent-primary)" }}
@@ -133,7 +133,7 @@ export default function Contact() {
             let&apos;s connect ✉️
           </p>
           <h2
-            className="serif text-4xl md:text-5xl font-bold mb-4"
+            className="serif text-3xl sm:text-4xl md:text-5xl font-bold mb-4"
             style={{ color: "var(--ink-dark)" }}
           >
             Start a <span className="doodle-underline">Conversation</span>
@@ -146,10 +146,10 @@ export default function Contact() {
           </p>
         </div>
 
-        <div className="contact-grid grid grid-cols-1 lg:grid-cols-5 gap-12">
+        <div className="contact-grid grid grid-cols-1 lg:grid-cols-5 gap-8 sm:gap-12">
           {/* Contact form */}
           <div
-            className="contact-form lg:col-span-3 ruled-lines rounded-lg p-8 relative"
+            className="contact-form lg:col-span-3 ruled-lines rounded-lg p-5 sm:p-8 relative"
             style={{
               background: "var(--paper-white)",
               border: "1px solid rgba(42, 37, 32, 0.06)",
@@ -167,7 +167,7 @@ export default function Contact() {
             <form
               action="https://formsubmit.co/nevrinelabs@gmail.com"
               method="POST"
-              className="pl-6 flex flex-col gap-6"
+              className="pl-4 sm:pl-6 flex flex-col gap-5 sm:gap-6"
             >
               {/* FormSubmit config — no captcha, custom subject, nice template */}
               <input type="hidden" name="_subject" value="🎨 New Project Inquiry — Nevrine Labs" />
