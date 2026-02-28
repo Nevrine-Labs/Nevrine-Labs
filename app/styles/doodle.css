@@ -1,0 +1,290 @@
+/* ============================
+   DOODLE CSS EFFECTS
+   Hand-drawn visual classes
+   ============================ */
+
+/* --- Doodle Underline --- */
+.doodle-underline {
+  position: relative;
+  display: inline-block;
+}
+
+.doodle-underline::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 8px;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url("data:image/svg+xml,%3Csvg width='200' height='8' viewBox='0 0 200 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 5.5C30 2 60 7 100 3.5C140 0 170 6 199 3' stroke='%23e07a5f' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+  opacity: 0;
+  animation: drawUnderline 0.6s ease-out 0.3s forwards;
+}
+
+/* --- Tape Effect --- */
+.tape-effect {
+  position: relative;
+}
+
+.tape-effect::before {
+  content: "";
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-2deg);
+  width: 70px;
+  height: 22px;
+  background: rgba(212, 184, 150, 0.45);
+  border-radius: 2px;
+  z-index: 1;
+}
+
+/* --- Margin Note --- */
+.margin-note {
+  font-family: "Caveat", "Bradley Hand", cursive;
+  color: var(--accent-primary);
+  transform: rotate(-2deg);
+  font-size: 1.1rem;
+}
+
+/* --- Crossed Out --- */
+.crossed-out {
+  position: relative;
+}
+
+.crossed-out::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -5%;
+  width: 110%;
+  height: 2px;
+  background: var(--ink-dark);
+  transform: rotate(-2deg);
+  opacity: 0.5;
+}
+
+/* --- Scribble Circle --- */
+.scribble-circle {
+  position: relative;
+}
+
+.scribble-circle::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  border: 2px solid var(--accent-primary);
+  border-radius: 45% 55% 50% 48% / 52% 48% 55% 45%;
+  transform: rotate(-1deg);
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+/* --- Doodle Divider --- */
+.doodle-divider {
+  width: 100%;
+  height: 16px;
+  background-repeat: repeat-x;
+  background-size: 100px 16px;
+  background-position: center;
+  opacity: 0.3;
+  background-image: url("data:image/svg+xml,%3Csvg width='100' height='16' viewBox='0 0 100 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 8C10 4 20 12 30 8C40 4 50 12 60 8C70 4 80 12 90 8C100 4 100 8 100 8' stroke='%232a2520' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+}
+
+/* --- Pin Dot --- */
+.pin-dot {
+  position: relative;
+}
+
+.pin-dot::before {
+  content: "";
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 10px;
+  height: 10px;
+  background: var(--accent-primary);
+  border-radius: 50%;
+  z-index: 2;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+/* --- Hover Effects --- */
+.hover-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-5px);
+  box-shadow: 4px 8px 20px rgba(42, 37, 32, 0.08);
+}
+
+.hover-tilt {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-tilt:hover {
+  transform: rotate(1deg) translateY(-3px);
+  box-shadow: 4px 6px 16px rgba(42, 37, 32, 0.1);
+}
+
+/* --- Note Style Card --- */
+.note-style {
+  background: var(--card-cream);
+  border-radius: 4px;
+  box-shadow: 2px 3px 8px rgba(42, 37, 32, 0.06);
+  position: relative;
+}
+
+/* --- Ruled Lines Background --- */
+.ruled-lines {
+  background-image: repeating-linear-gradient(transparent,
+      transparent 31px,
+      rgba(42, 37, 32, 0.08) 31px,
+      rgba(42, 37, 32, 0.08) 32px);
+  background-size: 100% 32px;
+}
+
+/* --- Corner Fold --- */
+.corner-fold {
+  position: relative;
+  overflow: hidden;
+}
+
+.corner-fold::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 30px 30px 0;
+  border-color: transparent var(--paper-warm) transparent transparent;
+  filter: drop-shadow(-2px 2px 2px rgba(0, 0, 0, 0.05));
+}
+
+/* ============================
+   ANIMATIONS
+   ============================ */
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes drawLine {
+  from {
+    stroke-dashoffset: 1000;
+  }
+
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes drawUnderline {
+  from {
+    opacity: 0;
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+
+  to {
+    opacity: 0.8;
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+}
+
+@keyframes wiggle {
+
+  0%,
+  100% {
+    transform: rotate(-1deg);
+  }
+
+  50% {
+    transform: rotate(1deg);
+  }
+}
+
+@keyframes scribble {
+  0% {
+    stroke-dashoffset: 500;
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+}
+
+/* Utility animation classes */
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+.animate-draw-line {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: drawLine 2s ease-out forwards;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.animate-wiggle {
+  animation: wiggle 3s ease-in-out infinite;
+}
+
+.animate-scribble {
+  stroke-dasharray: 500;
+  stroke-dashoffset: 500;
+  animation: scribble 1.5s ease-out forwards;
+}

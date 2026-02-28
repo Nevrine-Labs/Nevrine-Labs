@@ -1,26 +1,132 @@
 @import "tailwindcss";
+@import "./styles/doodle.css";
+
+/* ============================
+   DOODLE DESIGN SYSTEM
+   Nevrine Labs — Paper & Ink
+   ============================ */
+
+/* --- Google Fonts (loaded in layout.tsx) --- */
+/* Caveat — handwritten
+   Libre Baskerville — serif */
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Paper palette */
+  --paper-warm: #f5f1e8;
+  --paper-light: #faf8f3;
+  --paper-white: #fffdf8;
+  --ink-dark: #2a2520;
+  --ink-medium: #4a453e;
+  --ink-light: #7a756e;
+
+  /* Accent colors */
+  --accent-primary: #e07a5f;
+  --accent-secondary: #3d85c6;
+  --accent-tertiary: #81b29a;
+  --accent-warm: #d4b896;
+
+  /* Pastel card palette */
+  --card-cream: #faf3e7;
+  --card-peach: #fde8e0;
+  --card-mint: #e0f2ec;
+  --card-lavender: #ede4f5;
+  --card-blue: #dfe9f5;
+  --card-yellow: #fdf5d6;
+
+  /* Backgrounds */
+  --background: var(--paper-warm);
+  --foreground: var(--ink-dark);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-paper-warm: var(--paper-warm);
+  --color-paper-light: var(--paper-light);
+  --color-paper-white: var(--paper-white);
+  --color-ink-dark: var(--ink-dark);
+  --color-ink-medium: var(--ink-medium);
+  --color-ink-light: var(--ink-light);
+  --color-accent-primary: var(--accent-primary);
+  --color-accent-secondary: var(--accent-secondary);
+  --color-accent-tertiary: var(--accent-tertiary);
+  --color-accent-warm: var(--accent-warm);
+  --color-card-cream: var(--card-cream);
+  --color-card-peach: var(--card-peach);
+  --color-card-mint: var(--card-mint);
+  --color-card-lavender: var(--card-lavender);
+  --color-card-blue: var(--card-blue);
+  --color-card-yellow: var(--card-yellow);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-handwritten: var(--font-caveat), "Caveat", "Bradley Hand", cursive;
+  --font-serif: var(--font-libre), "Libre Baskerville", "Palatino Linotype", "Iowan Old Style", serif;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-serif);
+  position: relative;
+}
+
+/* Grain/noise overlay */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--paper-light);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--accent-warm);
+  border-radius: 10px;
+  border: 2px solid var(--paper-light);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-primary);
+}
+
+/* Selection */
+::selection {
+  background: rgba(212, 184, 150, 0.35);
+  color: var(--ink-dark);
+}
+
+/* Typography utilities */
+.serif {
+  font-family: var(--font-serif);
+}
+
+.handwritten {
+  font-family: var(--font-handwritten);
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Focus styles */
+*:focus-visible {
+  outline: 2px dashed var(--accent-primary);
+  outline-offset: 3px;
 }
