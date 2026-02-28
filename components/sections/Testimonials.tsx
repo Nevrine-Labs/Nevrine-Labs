@@ -12,48 +12,42 @@ const testimonials = [
   {
     quote:
       "Nevrine Labs turned our messy ideas into a beautiful, intuitive platform. Their work feels like magic — effortless from the user's perspective, but deeply thoughtful underneath.",
-    author: "Sarah Kim",
-    role: "CEO, EcoTrack",
+    author: "Ananya Sharma",
     color: "var(--card-peach)",
     rotation: "-1.5deg",
   },
   {
     quote:
       "Working with them felt like collaborating with friends who happen to be incredibly talented. They really listened and delivered beyond what we imagined.",
-    author: "Marcus Chen",
-    role: "Founder, ArtVault",
+    author: "Arjun Mehta",
     color: "var(--card-mint)",
     rotation: "1deg",
   },
   {
     quote:
       "The brand identity they created for us is perfect. It captures exactly who we are — playful yet professional, bold yet approachable.",
-    author: "Priya Patel",
-    role: "Creative Director, Lumière",
+    author: "Priya Nair",
     color: "var(--card-lavender)",
     rotation: "-0.5deg",
   },
   {
     quote:
       "Our app went from concept to App Store in 3 months. The doodle-style onboarding they designed gets compliments from every single user.",
-    author: "Jake Wilson",
-    role: "CTO, PulseChat",
+    author: "Rohan Desai",
     color: "var(--card-yellow)",
     rotation: "1.5deg",
   },
   {
     quote:
       "I've worked with many agencies, but Nevrine Labs is special. They don't just build — they care. Every interaction felt genuine and every delivery was outstanding.",
-    author: "Emma Rodriguez",
-    role: "VP Product, Mindful Inc",
+    author: "Kavya Iyer",
     color: "var(--card-blue)",
     rotation: "-1deg",
   },
   {
     quote:
       "The documentation platform they built transformed how our team works. Clean, intuitive, and surprisingly fun to use. That's the Nevrine Labs touch.",
-    author: "David Park",
-    role: "Engineering Lead, CodeScribe",
+    author: "Vikram Reddy",
     color: "var(--card-cream)",
     rotation: "0.5deg",
   },
@@ -250,20 +244,12 @@ export default function Testimonials() {
 
                 <div className="flex items-center gap-2">
                   <DoodleHeart size={16} opacity={0.4} />
-                  <div>
-                    <p
-                      className="handwritten text-base font-bold"
-                      style={{ color: "var(--ink-dark)" }}
-                    >
-                      {t.author}
-                    </p>
-                    <p
-                      className="serif text-xs"
-                      style={{ color: "var(--ink-light)" }}
-                    >
-                      {t.role}
-                    </p>
-                  </div>
+                  <p
+                    className="handwritten text-base font-bold"
+                    style={{ color: "var(--ink-dark)" }}
+                  >
+                    {t.author}
+                  </p>
                 </div>
               </div>
             </div>

@@ -10,52 +10,58 @@ gsap.registerPlugin(ScrollTrigger);
 
 const projects = [
   {
-    title: "EcoTrack Dashboard",
-    category: "Web App • UI/UX",
-    description: "Real-time sustainability analytics platform with data visualization and AI-driven insights.",
+    title: "FocusEdu",
+    category: "Web App • EdTech",
+    description: "A modern educational platform designed to help students stay focused, track progress, and master their learning goals.",
     color: "var(--card-mint)",
     rotation: "-2deg",
     accent: "#81b29a",
+    comingSoon: false,
   },
   {
-    title: "Lumière Brand Identity",
-    category: "Branding • Strategy",
-    description: "Complete visual identity for a luxury candle brand — logo, packaging, and digital presence.",
-    color: "var(--card-lavender)",
+    title: "GoldenHour",
+    category: "Web App • Smart City",
+    description: "An AI-powered green corridor system for ambulances that optimizes traffic signals in real-time to ensure faster emergency response.",
+    color: "var(--card-yellow)",
     rotation: "1.5deg",
-    accent: "#9b72cf",
+    accent: "#d4a843",
+    comingSoon: false,
   },
   {
-    title: "PulseChat Mobile",
-    category: "Mobile App • AI",
-    description: "AI-powered messaging app with smart reply suggestions and mood-based themes.",
+    title: "Housely",
+    category: "Web App • Real Estate",
+    description: "A smart real estate platform that simplifies property search, listings, and home buying with an intuitive interface.",
     color: "var(--card-peach)",
     rotation: "-1deg",
     accent: "#e07a5f",
+    comingSoon: false,
   },
   {
-    title: "ArtVault Marketplace",
-    category: "Full-Stack • E-commerce",
-    description: "Digital art marketplace connecting independent artists with collectors worldwide.",
-    color: "var(--card-blue)",
+    title: "Coming Soon",
+    category: "✨ In Progress",
+    description: "Something exciting is brewing! We're working on a brand new project that we can't wait to share with you.",
+    color: "var(--card-lavender)",
     rotation: "2deg",
-    accent: "#3d85c6",
+    accent: "#9b72cf",
+    comingSoon: true,
   },
   {
-    title: "Mindful Moments",
-    category: "Mobile App • UX",
-    description: "Meditation and journaling app with calming animations and personalized habit tracking.",
-    color: "var(--card-yellow)",
+    title: "Coming Soon",
+    category: "✨ In Progress",
+    description: "Another creative idea is taking shape on our sketchpad. Stay tuned for the big reveal!",
+    color: "var(--card-blue)",
     rotation: "-1.5deg",
-    accent: "#d4a843",
+    accent: "#3d85c6",
+    comingSoon: true,
   },
   {
-    title: "CodeScribe Platform",
-    category: "Web App • DevTools",
-    description: "Collaborative code documentation tool with real-time editing and auto-generated API docs.",
+    title: "Coming Soon",
+    category: "✨ In Progress",
+    description: "We're sketching, coding, and perfecting our next masterpiece. Follow us to be the first to know!",
     color: "var(--card-cream)",
     rotation: "1deg",
     accent: "#81b29a",
+    comingSoon: true,
   },
 ];
 
@@ -182,7 +188,7 @@ export default function Work() {
         <div className="work-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-10">
           {projects.map((project, index) => (
             <div
-              key={project.title}
+              key={`${project.title}-${index}`}
               className="relative group cursor-pointer"
             >
               <div
@@ -228,7 +234,7 @@ export default function Work() {
                         background: "rgba(255,255,255,0.8)",
                       }}
                     >
-                      View Project →
+                      {project.comingSoon ? "Coming Soon 🔒" : "View Project →"}
                     </span>
                   </div>
                 </div>
