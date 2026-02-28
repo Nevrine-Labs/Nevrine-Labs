@@ -17,6 +17,7 @@ const projects = [
     rotation: "-2deg",
     accent: "#81b29a",
     comingSoon: false,
+    link: "https://focus-edu-delta.vercel.app",
   },
   {
     title: "GoldenHour",
@@ -26,6 +27,7 @@ const projects = [
     rotation: "1.5deg",
     accent: "#d4a843",
     comingSoon: false,
+    link: "",
   },
   {
     title: "Housely",
@@ -35,6 +37,7 @@ const projects = [
     rotation: "-1deg",
     accent: "#e07a5f",
     comingSoon: false,
+    link: "",
   },
   {
     title: "Coming Soon",
@@ -44,6 +47,7 @@ const projects = [
     rotation: "2deg",
     accent: "#9b72cf",
     comingSoon: true,
+    link: "",
   },
   {
     title: "Coming Soon",
@@ -223,20 +227,40 @@ export default function Work() {
                     <circle cx="25" cy="18" r="5" stroke={project.accent} strokeWidth="1.5" />
                   </svg>
 
-                  <div
-                    className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                    style={{ background: `${project.accent}12` }}
-                  >
-                    <span
-                      className="handwritten text-lg px-4 py-2 rounded-full"
-                      style={{
-                        color: project.accent,
-                        background: "rgba(255,255,255,0.8)",
-                      }}
+                  {project.link ? (
+                    <a
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                      style={{ background: `${project.accent}12` }}
                     >
-                      {project.comingSoon ? "Coming Soon 🔒" : "View Project →"}
-                    </span>
-                  </div>
+                      <span
+                        className="handwritten text-lg px-4 py-2 rounded-full"
+                        style={{
+                          color: project.accent,
+                          background: "rgba(255,255,255,0.8)",
+                        }}
+                      >
+                        View Project →
+                      </span>
+                    </a>
+                  ) : (
+                    <div
+                      className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                      style={{ background: `${project.accent}12` }}
+                    >
+                      <span
+                        className="handwritten text-lg px-4 py-2 rounded-full"
+                        style={{
+                          color: project.accent,
+                          background: "rgba(255,255,255,0.8)",
+                        }}
+                      >
+                        {project.comingSoon ? "Coming Soon 🔒" : "View Project →"}
+                      </span>
+                    </div>
+                  )}
                 </div>
 
                 <p
