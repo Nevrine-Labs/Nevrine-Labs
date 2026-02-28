@@ -356,6 +356,7 @@ export default function Contact() {
               <div className="flex gap-4">
                 {[
                   { label: "GitHub", href: "https://github.com/Nevrine-Labs" },
+                  { label: "Instagram", href: "https://instagram.com/nevrinelabs" },
                   { label: "Twitter", href: "#" },
                   { label: "LinkedIn", href: "#" },
                 ].map((social) => (
