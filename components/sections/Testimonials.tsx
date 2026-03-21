@@ -12,48 +12,42 @@ const testimonials = [
   {
     quote:
       "Nevrine Labs turned our messy ideas into a beautiful, intuitive platform. Their work feels like magic — effortless from the user's perspective, but deeply thoughtful underneath.",
-    author: "Sarah Kim",
-    role: "CEO, EcoTrack",
+    author: "Ananya Sharma",
     color: "var(--card-peach)",
     rotation: "-1.5deg",
   },
   {
     quote:
       "Working with them felt like collaborating with friends who happen to be incredibly talented. They really listened and delivered beyond what we imagined.",
-    author: "Marcus Chen",
-    role: "Founder, ArtVault",
+    author: "Arjun Mehta",
     color: "var(--card-mint)",
     rotation: "1deg",
   },
   {
     quote:
       "The brand identity they created for us is perfect. It captures exactly who we are — playful yet professional, bold yet approachable.",
-    author: "Priya Patel",
-    role: "Creative Director, Lumière",
+    author: "Priya Nair",
     color: "var(--card-lavender)",
     rotation: "-0.5deg",
   },
   {
     quote:
       "Our app went from concept to App Store in 3 months. The doodle-style onboarding they designed gets compliments from every single user.",
-    author: "Jake Wilson",
-    role: "CTO, PulseChat",
+    author: "Rohan Desai",
     color: "var(--card-yellow)",
     rotation: "1.5deg",
   },
   {
     quote:
       "I've worked with many agencies, but Nevrine Labs is special. They don't just build — they care. Every interaction felt genuine and every delivery was outstanding.",
-    author: "Emma Rodriguez",
-    role: "VP Product, Mindful Inc",
+    author: "Kavya Iyer",
     color: "var(--card-blue)",
     rotation: "-1deg",
   },
   {
     quote:
       "The documentation platform they built transformed how our team works. Clean, intuitive, and surprisingly fun to use. That's the Nevrine Labs touch.",
-    author: "David Park",
-    role: "Engineering Lead, CodeScribe",
+    author: "Vikram Reddy",
     color: "var(--card-cream)",
     rotation: "0.5deg",
   },
@@ -172,12 +166,12 @@ export default function Testimonials() {
     <section
       ref={containerRef}
       id="testimonials"
-      className="relative py-24 md:py-32"
+      className="relative py-16 sm:py-24 md:py-32"
       style={{ background: "var(--paper-warm)" }}
     >
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
         {/* Section header */}
-        <div className="section-header text-center mb-16" style={{ opacity: 0 }}>
+        <div className="section-header text-center mb-10 sm:mb-16" style={{ opacity: 0 }}>
           <p
             className="handwritten text-xl mb-2"
             style={{ color: "var(--accent-primary)" }}
@@ -185,7 +179,7 @@ export default function Testimonials() {
             kind words 💬
           </p>
           <h2
-            className="serif text-4xl md:text-5xl font-bold mb-4"
+            className="serif text-3xl sm:text-4xl md:text-5xl font-bold mb-4"
             style={{ color: "var(--ink-dark)" }}
           >
             What Our <span className="doodle-underline">Clients</span> Say
@@ -193,14 +187,14 @@ export default function Testimonials() {
         </div>
 
         {/* Testimonials grid */}
-        <div className="testimonials-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="testimonials-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-8">
           {testimonials.map((t) => (
             <div
               key={t.author}
               className="relative"
             >
               <div
-                className="testimonial-card note-style p-7 relative cursor-default"
+                className="testimonial-card note-style p-5 sm:p-7 relative cursor-default"
                 style={{
                   background: t.color,
                   opacity: 0,
@@ -250,20 +244,12 @@ export default function Testimonials() {
 
                 <div className="flex items-center gap-2">
                   <DoodleHeart size={16} opacity={0.4} />
-                  <div>
-                    <p
-                      className="handwritten text-base font-bold"
-                      style={{ color: "var(--ink-dark)" }}
-                    >
-                      {t.author}
-                    </p>
-                    <p
-                      className="serif text-xs"
-                      style={{ color: "var(--ink-light)" }}
-                    >
-                      {t.role}
-                    </p>
-                  </div>
+                  <p
+                    className="handwritten text-base font-bold"
+                    style={{ color: "var(--ink-dark)" }}
+                  >
+                    {t.author}
+                  </p>
                 </div>
               </div>
             </div>

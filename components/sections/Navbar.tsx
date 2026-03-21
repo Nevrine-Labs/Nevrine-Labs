@@ -69,18 +69,18 @@ export default function Navbar() {
         opacity: 0,
       }}
     >
-      <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between">
         {/* Logo */}
-        <a href="#" className="nav-logo flex items-center gap-3 group" style={{ opacity: 0 }}>
+        <a href="#" className="nav-logo flex items-center gap-2 sm:gap-3 group" style={{ opacity: 0 }}>
           <Image
             src="/logo.png"
             alt="Nevrine Labs logo"
             width={36}
             height={36}
-            className="rounded-sm"
+            className="rounded-sm w-7 h-7 sm:w-9 sm:h-9"
           />
           <span
-            className="handwritten text-3xl font-bold tracking-tight"
+            className="handwritten text-2xl sm:text-3xl font-bold tracking-tight"
             style={{ color: "var(--ink-dark)" }}
           >
             Nevrine Labs

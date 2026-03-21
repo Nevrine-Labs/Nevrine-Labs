@@ -68,10 +68,10 @@ export default function Footer() {
         />
       </svg>
 
-      <div className="max-w-7xl mx-auto px-6 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-10 sm:py-16">
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-6 sm:gap-10">
           {/* Brand */}
-          <div className="footer-col md:col-span-2" style={{ opacity: 0 }}>
+          <div className="footer-col col-span-2 sm:col-span-2 md:col-span-2" style={{ opacity: 0 }}>
             <div className="flex items-center gap-2 mb-4">
               <DoodleStar size={24} color="#e07a5f" opacity={0.6} />
               <span
@@ -92,6 +92,7 @@ export default function Footer() {
             <div className="flex gap-5">
               {[
                 { label: "GitHub", href: "https://github.com/Nevrine-Labs" },
+                { label: "Instagram", href: "https://instagram.com/nevrinelabs" },
                 { label: "Twitter", href: "#" },
                 { label: "LinkedIn", href: "#" },
               ].map((social) => (
@@ -166,7 +167,7 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div
-          className="footer-bottom mt-14 pt-6 flex flex-col md:flex-row items-center justify-between gap-4"
+          className="footer-bottom mt-8 sm:mt-14 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4"
           style={{ borderTop: "1px dashed rgba(42, 37, 32, 0.1)", opacity: 0 }}
         >
           <p

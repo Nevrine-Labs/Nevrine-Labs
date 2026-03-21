@@ -143,12 +143,12 @@ export default function Services() {
     <section
       ref={containerRef}
       id="services"
-      className="relative py-24 md:py-32"
+      className="relative py-16 sm:py-24 md:py-32"
       style={{ background: "var(--paper-light)" }}
     >
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
         {/* Section header */}
-        <div className="section-header text-center mb-16" style={{ opacity: 0 }}>
+        <div className="section-header text-center mb-10 sm:mb-16" style={{ opacity: 0 }}>
           <p
             className="handwritten text-xl mb-2"
             style={{ color: "var(--accent-primary)" }}
@@ -156,7 +156,7 @@ export default function Services() {
             what we do ✏️
           </p>
           <h2
-            className="serif text-4xl md:text-5xl font-bold mb-4"
+            className="serif text-3xl sm:text-4xl md:text-5xl font-bold mb-4"
             style={{ color: "var(--ink-dark)" }}
           >
             Our <span className="doodle-underline">Services</span>
@@ -170,13 +170,13 @@ export default function Services() {
         </div>
 
         {/* Services grid */}
-        <div className="services-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="services-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-8">
           {services.map((service) => {
             const IconComponent = service.icon;
             return (
               <div
                 key={service.title}
-                className="service-card note-style hover-tilt corner-fold p-8 relative"
+                className="service-card note-style hover-tilt corner-fold p-5 sm:p-8 relative"
                 style={{
                   background: service.color,
                   opacity: 0,
@@ -231,7 +231,7 @@ export default function Services() {
 
       {/* Background doodle decoration */}
       <svg
-        className="deco-arrow absolute bottom-8 right-8 pointer-events-none"
+        className="deco-arrow absolute bottom-8 right-8 pointer-events-none hidden md:block"
         width="120"
         height="120"
         viewBox="0 0 120 120"

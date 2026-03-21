@@ -10,52 +10,62 @@ gsap.registerPlugin(ScrollTrigger);
 
 const projects = [
   {
-    title: "EcoTrack Dashboard",
-    category: "Web App • UI/UX",
-    description: "Real-time sustainability analytics platform with data visualization and AI-driven insights.",
+    title: "FocusEdu",
+    category: "Web App • EdTech",
+    description: "A modern educational platform designed to help students stay focused, track progress, and master their learning goals.",
     color: "var(--card-mint)",
     rotation: "-2deg",
     accent: "#81b29a",
+    comingSoon: false,
+    link: "https://focus-edu-delta.vercel.app",
   },
   {
-    title: "Lumière Brand Identity",
-    category: "Branding • Strategy",
-    description: "Complete visual identity for a luxury candle brand — logo, packaging, and digital presence.",
-    color: "var(--card-lavender)",
+    title: "GoldenHour",
+    category: "Web App • Smart City",
+    description: "An AI-powered green corridor system for ambulances that optimizes traffic signals in real-time to ensure faster emergency response.",
+    color: "var(--card-yellow)",
     rotation: "1.5deg",
-    accent: "#9b72cf",
+    accent: "#d4a843",
+    comingSoon: false,
+    link: "",
   },
   {
-    title: "PulseChat Mobile",
-    category: "Mobile App • AI",
-    description: "AI-powered messaging app with smart reply suggestions and mood-based themes.",
+    title: "Housely",
+    category: "Web App • Real Estate",
+    description: "A smart real estate platform that simplifies property search, listings, and home buying with an intuitive interface.",
     color: "var(--card-peach)",
     rotation: "-1deg",
     accent: "#e07a5f",
+    comingSoon: false,
+    link: "",
   },
   {
-    title: "ArtVault Marketplace",
-    category: "Full-Stack • E-commerce",
-    description: "Digital art marketplace connecting independent artists with collectors worldwide.",
-    color: "var(--card-blue)",
+    title: "Coming Soon",
+    category: "✨ In Progress",
+    description: "Something exciting is brewing! We're working on a brand new project that we can't wait to share with you.",
+    color: "var(--card-lavender)",
     rotation: "2deg",
-    accent: "#3d85c6",
+    accent: "#9b72cf",
+    comingSoon: true,
+    link: "",
   },
   {
-    title: "Mindful Moments",
-    category: "Mobile App • UX",
-    description: "Meditation and journaling app with calming animations and personalized habit tracking.",
-    color: "var(--card-yellow)",
+    title: "Coming Soon",
+    category: "✨ In Progress",
+    description: "Another creative idea is taking shape on our sketchpad. Stay tuned for the big reveal!",
+    color: "var(--card-blue)",
     rotation: "-1.5deg",
-    accent: "#d4a843",
+    accent: "#3d85c6",
+    comingSoon: true,
   },
   {
-    title: "CodeScribe Platform",
-    category: "Web App • DevTools",
-    description: "Collaborative code documentation tool with real-time editing and auto-generated API docs.",
+    title: "Coming Soon",
+    category: "✨ In Progress",
+    description: "We're sketching, coding, and perfecting our next masterpiece. Follow us to be the first to know!",
     color: "var(--card-cream)",
     rotation: "1deg",
     accent: "#81b29a",
+    comingSoon: true,
   },
 ];
 
@@ -152,12 +162,12 @@ export default function Work() {
     <section
       ref={containerRef}
       id="work"
-      className="relative py-24 md:py-32"
+      className="relative py-16 sm:py-24 md:py-32"
       style={{ background: "var(--paper-warm)" }}
     >
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
         {/* Section header */}
-        <div className="section-header text-center mb-16" style={{ opacity: 0 }}>
+        <div className="section-header text-center mb-10 sm:mb-16" style={{ opacity: 0 }}>
           <p
             className="handwritten text-xl mb-2"
             style={{ color: "var(--accent-primary)" }}
@@ -165,7 +175,7 @@ export default function Work() {
             our portfolio 🎨
           </p>
           <h2
-            className="serif text-4xl md:text-5xl font-bold mb-4"
+            className="serif text-3xl sm:text-4xl md:text-5xl font-bold mb-4"
             style={{ color: "var(--ink-dark)" }}
           >
             Selected <span className="doodle-underline">Work</span>
@@ -179,14 +189,14 @@ export default function Work() {
         </div>
 
         {/* Scrapboard grid */}
-        <div className="work-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+        <div className="work-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-10">
           {projects.map((project, index) => (
             <div
-              key={project.title}
+              key={`${project.title}-${index}`}
               className="relative group cursor-pointer"
             >
               <div
-                className="work-card note-style p-6 transition-colors duration-300"
+                className="work-card note-style p-4 sm:p-6 transition-colors duration-300"
                 style={{
                   background: project.color,
                   opacity: 0,
@@ -217,20 +227,40 @@ export default function Work() {
                     <circle cx="25" cy="18" r="5" stroke={project.accent} strokeWidth="1.5" />
                   </svg>
 
-                  <div
-                    className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                    style={{ background: `${project.accent}12` }}
-                  >
-                    <span
-                      className="handwritten text-lg px-4 py-2 rounded-full"
-                      style={{
-                        color: project.accent,
-                        background: "rgba(255,255,255,0.8)",
-                      }}
+                  {project.link ? (
+                    <a
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                      style={{ background: `${project.accent}12` }}
                     >
-                      View Project →
-                    </span>
-                  </div>
+                      <span
+                        className="handwritten text-lg px-4 py-2 rounded-full"
+                        style={{
+                          color: project.accent,
+                          background: "rgba(255,255,255,0.8)",
+                        }}
+                      >
+                        View Project →
+                      </span>
+                    </a>
+                  ) : (
+                    <div
+                      className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                      style={{ background: `${project.accent}12` }}
+                    >
+                      <span
+                        className="handwritten text-lg px-4 py-2 rounded-full"
+                        style={{
+                          color: project.accent,
+                          background: "rgba(255,255,255,0.8)",
+                        }}
+                      >
+                        {project.comingSoon ? "Coming Soon 🔒" : "View Project →"}
+                      </span>
+                    </div>
+                  )}
                 </div>
 
                 <p
